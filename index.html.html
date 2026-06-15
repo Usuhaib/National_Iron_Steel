@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+<meta name="theme-color" content="#fdf3e3">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="National Iron Steel">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="telephone=yes">
+<title>National Iron Steel – Jaunpur, UP</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
+*, *::before, *::after {
+  margin: 0; padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+:root {
+  --gold:       #c9922a;
+  --gold-lt:    #e8b86d;
+  --brown:      #7a4f1e;
+  --text-dark:  #3b2a14;
+  --text-mid:   #6b4c28;
+  --text-muted: #9e7a50;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  font-family: 'Rajdhani', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+  background:
+    radial-gradient(ellipse at 15% 10%, rgba(232,184,109,0.22) 0%, transparent 45%),
+    radial-gradient(ellipse at 85% 85%, rgba(201,146,42,0.14) 0%, transparent 45%),
+    linear-gradient(160deg, #fdf3e3 0%, #f5e8d0 40%, #eedfc0 70%, #f8f0e0 100%);
+  /* avoid fixed attachment on iOS — causes blank bg bug */
+  background-attachment: scroll;
+  color: var(--text-dark);
+  overflow-x: hidden;
+  /* safe area for iPhone notch / home bar */
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* subtle grid overlay – position:fixed removed for iOS compat, use absolute on a wrapper */
+.grid-bg {
+  position: absolute;
+  inset: 0;
+  min-height: 100%;
+  background-image:
+    linear-gradient(rgba(201,146,42,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201,146,42,0.06) 1px, transparent 1px);
+  background-size: 56px 56px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.page-wrap {
+  position: relative;
+  z-index: 1;
+}
+
+.container {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 16px 60px;
+}
+
+/* ── HEADER ── */
+header {
+  text-align: center;
+  padding: 48px 12px 36px;
+}
+
+.logo-3d {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 108px;
+  height: 108px;
+  border-radius: 26px;
+  background: linear-gradient(145deg,
+    rgba(255,255,255,0.78) 0%,
+    rgba(232,184,109,0.42) 50%,
+    rgba(180,130,50,0.22) 100%);
+  border: 1.5px solid rgba(201,146,42,0.42);
+  box-shadow:
+    5px 9px 28px rgba(120,80,20,0.22),
+    -2px -2px 8px rgba(255,255,255,0.82) inset,
+    2px 2px 6px rgba(150,100,30,0.18) inset;
+  margin: 0 auto 24px;
+  position: relative;
+  transform: perspective(420px) rotateY(-9deg) rotateX(6deg);
+  transition: transform 0.4s ease;
+  cursor: default;
+  /* prevent 3D flicker on iOS */
+  -webkit-transform: perspective(420px) rotateY(-9deg) rotateX(6deg);
+  will-change: transform;
+}
+
+.logo-3d:active {
+  transform: perspective(420px) rotateY(0deg) rotateX(0deg) scale(1.04);
+  -webkit-transform: perspective(420px) rotateY(0deg) rotateX(0deg) scale(1.04);
+}
+
+.logo-3d::before {
+  content: '';
+  position: absolute;
+  top: 5px; left: 5px; right: 5px;
+  height: 42%;
+  background: linear-gradient(180deg, rgba(255,255,255,0.52) 0%, transparent 100%);
+  border-radius: 20px 20px 50% 50%;
+  pointer-events: none;
+}
+
+.logo-text {
+  font-family: 'Orbitron', monospace;
+  font-weight: 900;
+  font-size: 36px;
+  color: var(--brown);
+  text-shadow:
+    0 0 16px rgba(201,146,42,0.45),
+    1px 2px 0 rgba(255,255,255,0.8),
+    -1px -1px 0 rgba(120,70,10,0.28);
+  letter-spacing: 2px;
+  position: relative;
+  z-index: 1;
+}
+
+.brand-name {
+  font-family: 'Orbitron', monospace;
+  font-size: clamp(18px, 5.5vw, 34px);
+  font-weight: 700;
+  letter-spacing: 3px;
+  background: linear-gradient(90deg, #7a4f1e, #c9922a, #e8b86d, #c9922a, #7a4f1e);
+  background-size: 300% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 4.5s linear infinite;
+  margin-bottom: 7px;
+  line-height: 1.25;
+}
+
+@keyframes shimmer {
+  0%   { background-position: 0% center; }
+  100% { background-position: 300% center; }
+}
+
+.brand-tagline {
+  font-size: 11px;
+  letter-spacing: 5px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+
+.brand-address {
+  font-size: 13px;
+  color: var(--text-mid);
+  margin-top: 9px;
+  line-height: 1.5;
+}
+
+/* ── DIVIDER ── */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 36px 0 22px;
+}
+.divider::before, .divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201,146,42,0.5), transparent);
+}
+.divider span {
+  font-family: 'Orbitron', monospace;
+  font-size: clamp(11px, 3vw, 14px);
+  letter-spacing: 4px;
+  color: var(--gold);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* ── GLASS CARD ── */
+.glass-card {
+  background: linear-gradient(145deg,
+    rgba(255,255,255,0.64) 0%,
+    rgba(253,248,240,0.48) 40%,
+    rgba(232,184,109,0.13) 70%,
+    rgba(255,248,235,0.38) 100%);
+  border: 1px solid rgba(201,146,42,0.22);
+  border-top-color: rgba(255,255,255,0.72);
+  border-left-color: rgba(255,255,255,0.56);
+  border-radius: 20px;
+  padding: 24px 20px;
+  position: relative;
+  overflow: hidden;
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  /* subtle 3D tilt — keep small so it works on mobile */
+  -webkit-transform: perspective(600px) rotateX(1deg);
+  transform: perspective(600px) rotateX(1deg);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow:
+    3px 7px 24px rgba(120,80,20,0.13),
+    0 1px 0 rgba(255,255,255,0.78) inset;
+  animation: floatIn 0.55s ease both;
+  will-change: transform;
+}
+
+.glass-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 46%;
+  background: linear-gradient(180deg, rgba(255,255,255,0.36) 0%, transparent 100%);
+  border-radius: 20px 20px 0 0;
+  pointer-events: none;
+}
+
+/* active tap state for mobile (replaces hover) */
+.glass-card:active {
+  -webkit-transform: perspective(600px) rotateX(0deg) scale(0.98);
+  transform: perspective(600px) rotateX(0deg) scale(0.98);
+}
+
+@media (hover: hover) {
+  .glass-card:hover {
+    -webkit-transform: perspective(600px) rotateX(0deg) translateY(-5px);
+    transform: perspective(600px) rotateX(0deg) translateY(-5px);
+    box-shadow: 5px 16px 36px rgba(120,80,20,0.18), 0 1px 0 rgba(255,255,255,0.85) inset;
+    border-color: rgba(201,146,42,0.4);
+  }
+}
+
+@keyframes floatIn {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── SERVICE GRID ── */
+.desc-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.desc-grid .glass-card:nth-child(1) { animation-delay: 0.05s; }
+.desc-grid .glass-card:nth-child(2) { animation-delay: 0.12s; }
+.desc-grid .glass-card:nth-child(3) { animation-delay: 0.19s; }
+.desc-grid .glass-card:nth-child(4) { animation-delay: 0.26s; }
+
+.service-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+}
+
+.service-icon-wrap {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(232,184,109,0.35), rgba(255,255,255,0.5));
+  border: 1px solid rgba(201,146,42,0.28);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.service-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--brown);
+  line-height: 1.3;
+}
+
+.service-desc {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* ── LOCATION ── */
+.map-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  padding: 16px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(201,146,42,0.12), rgba(255,255,255,0.42));
+  border: 1px solid rgba(201,146,42,0.26);
+  margin-bottom: 14px;
+  /* large touch target */
+  min-height: 64px;
+  -webkit-user-select: none;
+  user-select: none;
+  transition: background 0.18s;
+}
+
+.map-link:active {
+  background: linear-gradient(135deg, rgba(201,146,42,0.24), rgba(255,255,255,0.52));
+}
+
+.map-pin { font-size: 28px; flex-shrink: 0; }
+
+.map-text-wrap { flex: 1; text-align: left; }
+
+.map-label {
+  font-size: 10px;
+  letter-spacing: 2.5px;
+  color: var(--gold);
+  text-transform: uppercase;
+  font-weight: 600;
+  display: block;
+}
+
+.map-address {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--brown);
+  display: block;
+  margin-top: 2px;
+}
+
+.map-hint {
+  font-size: 11px;
+  color: var(--text-muted);
+  display: block;
+  margin-top: 2px;
+}
+
+.arrow-icon { font-size: 18px; color: var(--gold); flex-shrink: 0; }
+
+.loc-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+.loc-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(201,146,42,0.1);
+  border: 1px solid rgba(201,146,42,0.2);
+  border-radius: 50px;
+  padding: 6px 14px;
+  font-size: 12px;
+  color: var(--text-mid);
+  font-weight: 500;
+}
+
+/* ── PROPRIETOR CARDS ── */
+.prop-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.prop-card {
+  width: 100%;
+  text-align: center;
+  animation-delay: 0.1s;
+}
+
+.prop-card:nth-child(2) { animation-delay: 0.18s; }
+
+.prop-avatar {
+  width: 78px;
+  height: 78px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(201,146,42,0.4), rgba(255,255,255,0.62));
+  border: 2.5px solid rgba(201,146,42,0.52);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Orbitron', monospace;
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--brown);
+  margin: 0 auto 14px;
+  box-shadow: 3px 5px 14px rgba(120,80,20,0.18), -1px -1px 4px rgba(255,255,255,0.8) inset;
+  position: relative;
+  z-index: 1;
+}
+
+.prop-role {
+  font-size: 10px;
+  letter-spacing: 5px;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+  font-weight: 600;
+}
+
+.prop-name {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--brown);
+  margin-bottom: 18px;
+}
+
+.contact-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+/* big tap target for phone & whatsapp */
+.contact-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  padding: 12px 20px;
+  border-radius: 12px;
+  width: 100%;
+  min-height: 52px;
+  transition: background 0.15s;
+}
+
+.btn-phone {
+  background: rgba(201,146,42,0.12);
+  border: 1px solid rgba(201,146,42,0.3);
+}
+.btn-phone:active { background: rgba(201,146,42,0.22); }
+
+.btn-wa {
+  background: rgba(37,211,102,0.1);
+  border: 1px solid rgba(37,211,102,0.28);
+}
+.btn-wa:active { background: rgba(37,211,102,0.2); }
+
+.btn-icon { font-size: 22px; flex-shrink: 0; }
+
+.btn-label-wrap { text-align: left; }
+
+.btn-sublabel {
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  display: block;
+}
+
+.btn-number {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--brown);
+  letter-spacing: 0.5px;
+  display: block;
+}
+
+.btn-wa-text {
+  font-size: 15px;
+  font-weight: 700;
+  color: #2e7d32;
+  display: block;
+}
+
+/* ── FOOTER ── */
+footer {
+  text-align: center;
+  padding: 28px 16px;
+  padding-bottom: calc(28px + env(safe-area-inset-bottom));
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  line-height: 1.8;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 360px) {
+  .brand-name { letter-spacing: 1px; }
+  .desc-grid { grid-template-columns: 1fr; }
+  .service-icon-wrap { width: 44px; height: 44px; font-size: 20px; }
+}
+
+@media (min-width: 600px) {
+  .container { padding: 0 24px 70px; }
+  .desc-grid { grid-template-columns: repeat(2, 1fr); }
+  .glass-card { padding: 28px 24px; }
+}
+
+@media (min-width: 900px) {
+  .desc-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+.language-switch{
+position:fixed;top:15px;right:15px;z-index:9999;
+background:linear-gradient(145deg,#ffffff,#e8f5e9);border:1.5px solid #2e7d32;border-radius:16px;
+padding:8px 12px;font-weight:700;color:#2e7d32;cursor:pointer;
+box-shadow:0 4px 12px rgba(0,0,0,.15);
+}
+
+</style>
+</head>
+<body>
+<button class="language-switch" onclick="toggleLanguage()" id="langBtn">हिन्दी</button>
+
+
+<div class="grid-bg"></div>
+
+<div class="page-wrap">
+<div class="container">
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo-3d">
+      <span class="logo-text">NIS</span>
+    </div>
+    <p class="brand-tagline"><span data-t="est">Est. Jaunpur · Uttar Pradesh</span></p>
+    <h1 class="brand-name" data-t="brandName">NATIONAL IRON STEEL</h1>
+    <p class="brand-tagline" style="letter-spacing:4px;font-size:10px;margin-top:4px;"><span data-t="special">Glass &amp; Iron Specialists</span></p>
+    <p class="brand-address">📍 Kotwali, Jaunpur, Uttar Pradesh – 222001</p>
+  </header>
+
+  <!-- SERVICES -->
+  <div class="divider"><span><span data-t="deal">What We Deal In</span></span></div>
+
+  <div class="desc-grid">
+
+    <div class="glass-card service-card">
+      <div class="service-icon-wrap">🪟</div>
+      <p class="service-title"><span data-t="g1">Toughened &amp; Plain Glass</span></p>
+      <p class="service-desc"><span data-t="g1d">Supply and installation of toughened safety glass and plain glass sheets.</span></p>
+    </div>
+
+    <div class="glass-card service-card">
+      <div class="service-icon-wrap">✂️</div>
+      <p class="service-title"><span data-t="g2">Glass Cutting &amp; Mirrors</span></p>
+      <p class="service-desc"><span data-t="g2d">Precision cutting and custom mirror fabrication for homes and showrooms.</span></p>
+    </div>
+
+    <div class="glass-card service-card">
+      <div class="service-icon-wrap">🎨</div>
+      <p class="service-title"><span data-t="g3">Glass Painting &amp; Paints</span></p>
+      <p class="service-desc"><span data-t="g3d">Decorative glass painting and quality paints for walls and furniture.</span></p>
+    </div>
+
+    <div class="glass-card service-card">
+      <div class="service-icon-wrap">⚙️</div>
+      <p class="service-title"><span data-t="g4">Iron Sheets &amp; Materials</span></p>
+      <p class="service-desc"><span data-t="g4d">Iron sheets, iron box materials for industrial and construction needs.</span></p>
+    </div>
+
+  </div>
+
+  <!-- LOCATION -->
+  <div class="divider"><span><span data-t="find">Find Us</span></span></div>
+
+  <div class="glass-card" style="animation-delay:0.1s;">
+    <a class="map-link"
+       href="https://www.google.com/maps/search/Kotwali+Jaunpur+Uttar+Pradesh+222001"
+       target="_blank"
+       rel="noopener noreferrer">
+      <span class="map-pin">🗺️</span>
+      <div class="map-text-wrap">
+        <span class="map-label"><span data-t="map">Tap to open in Google Maps</span></span>
+        <span class="map-address">Kotwali, Jaunpur – 222001</span>
+        <span class="map-hint"><span data-t="hint">Uttar Pradesh, India · Get Directions</span></span>
+      </div>
+      <span class="arrow-icon">↗</span>
+    </a>
+    <div class="loc-pills">
+      <div class="loc-pill">🇮🇳 India</div>
+      <div class="loc-pill">📮 PIN 222001</div>
+      <div class="loc-pill">🕐 Mon–Sat · 9AM–7PM</div>
+    </div>
+  </div>
+
+  <!-- PROPRIETORS -->
+  <div class="divider"><span><span data-t="prop"><span data-t="role">Proprietor</span>s</span></span></div>
+
+  <div class="prop-section">
+
+    <!-- Card 1 – Mohd Rahil -->
+    <div class="glass-card prop-card">
+      <div class="prop-avatar">MR</div>
+      <p class="prop-role"><span data-t="role">Proprietor</span></p>
+      <h2 class="prop-name" data-t="rahil">Mohd Rahil</h2>
+
+      <a class="contact-btn btn-phone" href="tel:+919889458545">
+        <span class="btn-icon">📞</span>
+        <div class="btn-label-wrap">
+          <span class="btn-sublabel"><span data-t="call">Call</span></span>
+          <span class="btn-number">+91 98894 58545</span>
+        </div>
+      </a>
+      <div style="height:8px;"></div>
+      <a class="contact-btn btn-wa" href="https://wa.me/919889458545" target="_blank" rel="noopener">
+        <span class="btn-icon">💬</span>
+        <div class="btn-label-wrap">
+          <span class="btn-sublabel"><span data-t="wa">WhatsApp</span></span>
+          <span class="btn-wa-text">98894 58545</span>
+        </div>
+      </a>
+
+      <div style="height:14px; border-top:1px solid rgba(201,146,42,0.18); margin-top:14px;"></div>
+
+      <a class="contact-btn btn-phone" href="tel:+918738093378" style="margin-top:2px;">
+        <span class="btn-icon">📞</span>
+        <div class="btn-label-wrap">
+          <span class="btn-sublabel"><span data-t="call">Call</span></span>
+          <span class="btn-number">+91 87380 93378</span>
+        </div>
+      </a>
+      <div style="height:8px;"></div>
+      <a class="contact-btn btn-wa" href="https://wa.me/918738093378" target="_blank" rel="noopener">
+        <span class="btn-icon">💬</span>
+        <div class="btn-label-wrap">
+          <span class="btn-sublabel"><span data-t="wa">WhatsApp</span></span>
+          <span class="btn-wa-text">87380 93378</span>
+        </div>
+      </a>
+    </div>
+
+    <!-- Card 2 – Nizamul Haque -->
+    <div class="glass-card prop-card">
+      <div class="prop-avatar">NH</div>
+      <p class="prop-role"><span data-t="role">Proprietor</span></p>
+      <h2 class="prop-name" data-t="nizamul">Nizamul Haque</h2>
+
+      <a class="contact-btn btn-phone" href="tel:+919415893306">
+        <span class="btn-icon">📞</span>
+        <div class="btn-label-wrap">
+          <span class="btn-sublabel"><span data-t="call">Call</span></span>
+          <span class="btn-number">+91 94158 93306</span>
+        </div>
+      </a>
+      <div style="height:8px;"></div>
+      <a class="contact-btn btn-wa" href="https://wa.me/919415893306" target="_blank" rel="noopener">
+        <span class="btn-icon">💬</span>
+        <div class="btn-label-wrap">
+          <span class="btn-sublabel"><span data-t="wa">WhatsApp</span></span>
+          <span class="btn-wa-text">94158 93306</span>
+        </div>
+      </a>
+    </div>
+
+  </div>
+
+</div><!-- /container -->
+</div><!-- /page-wrap -->
+
+<!-- FOOTER -->
+<footer>
+  © 2025 National Iron Steel<br>
+  Kotwali, Jaunpur, Uttar Pradesh – 222001
+</footer>
+
+
+<script>
+let currentLang='en';
+
+const t={
+en:{
+brandName:'NATIONAL IRON STEEL',rahil:'Mohd Rahil',nizamul:'Nizamul Haque',
+btn:'हिन्दी',
+est:'Est. Jaunpur · Uttar Pradesh',
+special:'Glass & Iron Specialists',
+deal:'What We Deal In',
+g1:'Toughened & Plain Glass',
+g1d:'Supply and installation of toughened safety glass and plain glass sheets.',
+g2:'Glass Cutting & Mirrors',
+g2d:'Precision cutting and custom mirror fabrication for homes and showrooms.',
+g3:'Glass Painting & Paints',
+g3d:'Decorative glass painting and quality paints for walls and furniture.',
+g4:'Iron Sheets & Materials',
+g4d:'Iron sheets, iron box materials for industrial and construction needs.',
+find:'Find Us',
+map:'Tap to open in Google Maps',
+hint:'Uttar Pradesh, India · Get Directions',
+prop:'Proprietors',
+role:'Proprietor',
+call:'Call',
+wa:'WhatsApp'
+},
+hi:{
+brandName:'नेशनल आयरन स्टील',
+btn:'English',
+est:'स्थापित: जौनपुर · उत्तर प्रदेश',
+special:'काँच एवं लोहे के विशेषज्ञ',
+deal:'हमारे उत्पाद एवं सेवाएँ',
+g1:'टफेन्ड एवं साधारण काँच',
+g1d:'टफेन्ड सुरक्षा काँच तथा साधारण काँच की शीटों की आपूर्ति एवं स्थापना।',
+g2:'काँच कटिंग एवं दर्पण',
+g2d:'घरों तथा शोरूमों हेतु सटीक काँच कटिंग एवं कस्टम दर्पण निर्माण।',
+g3:'काँच पेंटिंग एवं पेंट्स',
+g3d:'सजावटी काँच पेंटिंग तथा दीवारों एवं फर्नीचर हेतु गुणवत्तापूर्ण पेंट्स।',
+g4:'लोहे की चादरें एवं सामग्री',
+g4d:'औद्योगिक एवं निर्माण कार्यों हेतु लोहे की चादरें तथा आयरन बॉक्स सामग्री।',
+find:'हमारा स्थान',
+map:'गूगल मैप्स में खोलने हेतु टैप करें',
+hint:'उत्तर प्रदेश, भारत · दिशा-निर्देश प्राप्त करें',
+prop:'स्वामीगण',
+role:'स्वामी',rahil:'मोहम्मद राहिल',nizamul:'निज़ामुल हक़',
+call:'कॉल करें',
+wa:'व्हाट्सऐप'
+}
+};
+
+function toggleLanguage(){
+currentLang=currentLang==='en'?'hi':'en';
+const x=t[currentLang];
+
+document.getElementById('langBtn').innerText=x.btn;
+
+document.querySelectorAll('[data-t]').forEach(el=>{
+const key=el.getAttribute('data-t');
+if(x[key]) el.innerHTML=x[key];
+});
+}
+</script>
+
+</body>
+</html>
